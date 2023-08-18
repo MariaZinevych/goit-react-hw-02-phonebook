@@ -1,18 +1,14 @@
 import styled from 'styled-components';
-import { Form } from 'formik';
+import { ErrorMessage, Form } from 'formik';
 
 export const Container = styled(Form)`
-  padding: 10px;
+  padding: 20px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: 260px;
+  width: 230px;
 `;
 
-// export const Containerphone = styled.div`
-//   padding: 10px;
-//   margin: 0 auto;
-//   display: flex;
-//   flex-direction: column;
-//   width: 360px;
-// `;
+export const StyledError = styled(ErrorMessage)`
+  color: ${p => p.theme.colors.error};
+`;
