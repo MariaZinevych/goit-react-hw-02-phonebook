@@ -22,6 +22,7 @@ export const Phonebook = ({ onAdd }) => {
         validationSchema={SignupSchema}
         onSubmit={(values, actions) => {
           onAdd({ ...values, id: nanoid() });
+          console.log('values', values);
           actions.resetForm();
         }}
       >

@@ -1,9 +1,12 @@
-export const ContactList = () => {
+export const ContactList = ({ onValues }) => {
   return (
     <>
-      <ul>
-        <li></li>
-      </ul>
+      {onValues.map(value => (
+        <li key={value.id}>
+          <p> {value.name} </p>
+          <p> {value.number} </p>
+        </li>
+      ))}
     </>
   );
 };

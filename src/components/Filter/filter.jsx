@@ -1,9 +1,9 @@
-export const Filter = () => {
+export const Filter = ({ value, onChange }) => {
   return (
     <>
       <label htmlFor="firstName">
         Find contact by name
-        <input name="name" />
+        <input name="name" onChange={onChange} />
       </label>
     </>
   );
