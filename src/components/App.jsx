@@ -17,20 +17,20 @@ export class App extends Component {
   };
 
   addQuiz = newQuiz => {
-    this.setState(prevState => {
-      return {
-        contacts: [...prevState.contacts, newQuiz],
-      };
-    });
-
     const isInContacts = this.state.contacts.some(
       ({ name }) => name.toLowerCase() === newQuiz.name.toLowerCase()
     );
 
     if (isInContacts) {
       alert(`${newQuiz.name} is already in contacts`);
+
       return;
     }
+    this.setState(prevState => {
+      return {
+        contacts: [...prevState.contacts, newQuiz],
+      };
+    });
   };
 
   onChangeFilter = event => {
