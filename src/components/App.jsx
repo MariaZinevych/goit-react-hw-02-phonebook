@@ -22,36 +22,43 @@ export class App extends Component {
         contacts: [...prevState.contacts, newQuiz],
       };
     });
+
+    const isInContacts = this.state.contacts.some(
+      ({ name }) => name.toLowerCase() === newQuiz.name.toLowerCase()
+    );
+
+    if (isInContacts) {
+      alert(`${newQuiz.name} is already in contacts`);
+      return;
+    }
   };
 
-  // onChangeFilter = event => {
-  //   this.setState({ filter: event.target.value });
-  // };
+  onChangeFilter = event => {
+    this.setState({ filter: event.target.value });
+  };
 
-  // getVisibleContacts = () => {
-  //   const { filter, contacts } = this.state;
-  //   const normalizedFilter = filter.toLowerCase();
-
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(normalizedFilter)
-  //   );
-  // };
+  removeContact = contactId => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(({ id }) => id !== contactId),
+      };
+    });
+  };
 
   render() {
+    const normalizedFilter = this.state.filter.toLocaleLowerCase();
+    const visiebleList = this.state.contacts.filter(contact =>
+      contact.name.toLocaleLowerCase().includes(normalizedFilter)
+    );
+
     return (
       <>
         <h1>Phonebook</h1>
         <Phonebook onAdd={this.addQuiz} />
         <h2>Contacts</h2>
 
-        <Filter
-        // value={this.state.filter}
-        // onChange={this.state.onChangeFilter}
-        />
-        <ContactList
-          onValues={this.state.contacts}
-          onFind={this.getVisibleContacts}
-        />
+        <Filter value={this.state.filter} onChange={this.onChangeFilter} />
+        <ContactList onValues={visiebleList} onDelete={this.removeContact} />
         <GlobalStyle />
       </>
     );

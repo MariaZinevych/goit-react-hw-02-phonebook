@@ -3,7 +3,7 @@ export const Filter = ({ value, onChange }) => {
     <>
       <label htmlFor="firstName">
         Find contact by name
-        <input name="name" onChange={onChange} />
+        <input name="name" value={value} onChange={onChange} />
       </label>
     </>
   );
